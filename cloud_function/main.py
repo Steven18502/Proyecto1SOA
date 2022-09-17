@@ -1,10 +1,14 @@
 
+# Constants
+apikey = "apikey.json"
+bucketname = "soa-project1-361306-input"
+from google.cloud import vision 
+from google.cloud import storage
+
 # [START vision_face_detection_gcs]
 def detect_faces_cloud():
     """Detects faces in the file located in Google Cloud Storage or the web."""
-    from google.cloud import vision 
-    from google.cloud import storage
-    
+
     # Activate Google vision API using service account key
     client = vision.ImageAnnotatorClient.from_service_account_json(apikey)
     
@@ -58,31 +62,19 @@ def detect_faces_cloud():
 def delete_blob(bucket, blob_name):
     """Deletes a blob from the bucket."""
     blob = bucket.blob(blob_name)
-    # blob.delete()
+    blob.delete()
     print(f"Blob: {blob_name} deleted.")
 
 # Function that prints the emotion to the terminal.
 # INPUT: emotions array.
 # OUTPUT: print the values with respective labels.
 def show(emotions):
-    import json
-    data = {}
-    data['face'] = emotions[0]
-    data['joy'] = emotions[1]
-    data['sorrow'] = emotions[2]
-    data['anger'] = emotions[3]
-    data['surpirse'] = emotions[4]
-    json_data = json.dumps(data)
-
     print("\nFace", emotions[0])
     print('joy: {}'.format(emotions[1]))
     print('sorrow: {}'.format(emotions[2]))
     print('anger: {}'.format(emotions[3]))
-    print('surprise: {}'.format(emotions[4]))
-    print('json {}\n'.format(json_data))
+    print('surprise: {}\n'.format(emotions[4]))
 
-if __name__ == "__main__":
-    apikey = "apikey.json"
-    bucketname = "soa-visionapi-bucket"
+def main(context,event):
     detect_faces_cloud()
-
+    print('Hello, stdout!')
