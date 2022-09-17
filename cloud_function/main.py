@@ -6,6 +6,8 @@ import io
 client = vision.ImageAnnotatorClient.from_service_account_json("apikey.json")
 image = vision.types.Image()
 
+def main(event, context):
+    print("Evento-contexto", context)
 
 # Set environment the pictures
 def environment():
