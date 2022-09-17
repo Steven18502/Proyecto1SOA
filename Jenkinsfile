@@ -25,8 +25,8 @@ pipeline {
             steps {
                 dir('./terraform'){
                     sh 'terraform init'
-                    sh 'terraform plan -out'
-                    sh 'terraform destroy -auto-approve'
+                    sh 'terraform plan -destroy'
+                    //sh 'terraform destroy -auto-approve'
                 } 
             }
         }
