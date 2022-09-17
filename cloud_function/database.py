@@ -1,5 +1,7 @@
 import mysql.connector
+import socket
 
+print(socket.gethostbyname(socket.gethostname()))
 mydb = mysql.connector.connect(
   host="104.197.57.229",
   user="root",
