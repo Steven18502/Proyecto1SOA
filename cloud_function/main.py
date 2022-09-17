@@ -47,7 +47,7 @@ def detect_faces_cloud():
             emotions.append(likelihood_name[face.surprise_likelihood])
             emotions_json.append(emotions)
             show(emotions)
-    
+    print("Vamos a eliminar la imagens")
     # Delete the analyzed image.
     delete_blob(bucket, blob_name)
     
