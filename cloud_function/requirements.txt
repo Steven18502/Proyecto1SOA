@@ -1,3 +1,4 @@
+sockets==1.0.0
 mysql-connector-python==8.0.30
 google-api-core==1.22.4
 google-auth==1.23.0
