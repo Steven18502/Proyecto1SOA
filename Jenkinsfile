@@ -24,9 +24,9 @@ pipeline {
         stage("deploy") {
             steps {
                 dir('./terraform'){
-                    sh 'terraform destroy -auto-approve'
                     sh 'terraform init'
                     sh 'terraform plan'
+                    sh 'terraform destroy -auto-approve'
                     sh 'terraform apply -auto-approve'
                 } 
             }
