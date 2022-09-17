@@ -4,7 +4,6 @@ apikey = "apikey.json"
 bucketname = "soa-project1-361306-input"
 from google.cloud import vision 
 from google.cloud import storage
-from database import insert
 
 # [START vision_face_detection_gcs]
 def detect_faces_cloud():
@@ -47,7 +46,6 @@ def detect_faces_cloud():
             emotions.append(likelihood_name[face.anger_likelihood])
             emotions.append(likelihood_name[face.surprise_likelihood])
             emotions_json.append(emotions)
-            insert(emotions)
             show(emotions)
     
     # Delete the analyzed image.
