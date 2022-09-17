@@ -1,6 +1,6 @@
 
 variable "project_id" {
-    default = "soa-project1-361306 "
+    default = "soa-project1-361306"
 }
 
 variable "region" {
