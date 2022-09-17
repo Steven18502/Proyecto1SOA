@@ -1,22 +1,23 @@
 pipeline {
     agent any
     stages {
-        stage("init") {
+        stage("git") {
             steps {
-                git branch: 'test', changelog: true, poll: true, url: 'https://github.com/Steven18502/Proyecto1SOA.git'
+                git branch: 'main', changelog: true, poll: true, url: 'https://github.com/Steven18502/Proyecto1SOA.git'
             }
         }
-        stage("build") {
+        stage("CodeCheck") {
             steps {
                 dir('./cloud_function'){
                     sh 'pylint --exit-zero main.py'
+                    sh 'pylint --exit-zero database.py'
                 } 
             }
         }
         stage("test") {
             steps {
                 dir('./cloud_function'){
-                    echo 'pytest -v'
+                    sh 'pytest -v'
                 } 
                
             }
