@@ -1,4 +1,8 @@
 
+# Constants
+apikey = "apikey.json"
+bucketname = "soa-project1-361306-input"
+
 # [START vision_face_detection_gcs]
 def detect_faces_cloud():
     """Detects faces in the file located in Google Cloud Storage or the web."""
@@ -58,7 +62,7 @@ def detect_faces_cloud():
 def delete_blob(bucket, blob_name):
     """Deletes a blob from the bucket."""
     blob = bucket.blob(blob_name)
-    # blob.delete()
+    blob.delete()
     print(f"Blob: {blob_name} deleted.")
 
 # Function that prints the emotion to the terminal.
@@ -82,7 +86,5 @@ def show(emotions):
     print('json {}\n'.format(json_data))
 
 def main(context,event):
-    apikey = "apikey.json"
-    bucketname = "soa-visionapi-bucket"
     detect_faces_cloud()
     print('Hello, stdout!')
