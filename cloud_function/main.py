@@ -8,7 +8,8 @@ def detect_faces_cloud():
     """Detects faces in the file located in Google Cloud Storage or the web."""
     from google.cloud import vision 
     from google.cloud import storage
-    
+    from database import insert
+
     # Activate Google vision API using service account key
     client = vision.ImageAnnotatorClient.from_service_account_json(apikey)
     
@@ -46,6 +47,7 @@ def detect_faces_cloud():
             emotions.append(likelihood_name[face.anger_likelihood])
             emotions.append(likelihood_name[face.surprise_likelihood])
             emotions_json.append(emotions)
+            insert(emotions)
             show(emotions)
     
     # Delete the analyzed image.
@@ -69,21 +71,11 @@ def delete_blob(bucket, blob_name):
 # INPUT: emotions array.
 # OUTPUT: print the values with respective labels.
 def show(emotions):
-    import json
-    data = {}
-    data['face'] = emotions[0]
-    data['joy'] = emotions[1]
-    data['sorrow'] = emotions[2]
-    data['anger'] = emotions[3]
-    data['surpirse'] = emotions[4]
-    json_data = json.dumps(data)
-
     print("\nFace", emotions[0])
     print('joy: {}'.format(emotions[1]))
     print('sorrow: {}'.format(emotions[2]))
     print('anger: {}'.format(emotions[3]))
-    print('surprise: {}'.format(emotions[4]))
-    print('json {}\n'.format(json_data))
+    print('surprise: {}\n'.format(emotions[4]))
 
 def main(context,event):
     detect_faces_cloud()
