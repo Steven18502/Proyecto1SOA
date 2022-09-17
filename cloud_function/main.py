@@ -81,8 +81,8 @@ def show(emotions):
     print('surprise: {}'.format(emotions[4]))
     print('json {}\n'.format(json_data))
 
-if __name__ == "__main__":
+def main(context,event):
     apikey = "apikey.json"
     bucketname = "soa-visionapi-bucket"
     detect_faces_cloud()
-
+    print('Hello, stdout!')
