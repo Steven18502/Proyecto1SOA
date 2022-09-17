@@ -2,13 +2,13 @@
 # Constants
 apikey = "apikey.json"
 bucketname = "soa-project1-361306-input"
+from google.cloud import vision 
+from google.cloud import storage
+from database import insert
 
 # [START vision_face_detection_gcs]
 def detect_faces_cloud():
     """Detects faces in the file located in Google Cloud Storage or the web."""
-    from google.cloud import vision 
-    from google.cloud import storage
-    from database import insert
 
     # Activate Google vision API using service account key
     client = vision.ImageAnnotatorClient.from_service_account_json(apikey)
