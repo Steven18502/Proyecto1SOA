@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage("init") {
             steps {
-                git branch: 'test', changelog: true, poll: true, url: 'https://github.com/Steven18502/Proyecto1SOA.git'
+                git branch: 'main', changelog: true, poll: true, url: 'https://github.com/Steven18502/Proyecto1SOA.git'
             }
         }
         stage("build") {
